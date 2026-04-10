@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morphing Shapes — Cinematic Module</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--text:#eae7e2;--muted:#5a5a5e;--accent:#c8a97e;--border:#1e1e22}
+  *{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .hero{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
+  .hero-label{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+  .hero h1{font-size:clamp(32px,6vw,64px);font-weight:600;line-height:1.15;max-width:700px;letter-spacing:-.025em}
+  .hero h1 span{color:var(--accent)}
+  .hero p{font-size:17px;color:var(--muted);line-height:1.6;max-width:520px;margin-top:16px}
+  .morph-section{min-height:300vh;position:relative}
+  .morph-canvas{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .morph-canvas svg{width:min(80vw,700px);height:min(80vw,700px)}
+  .morph-label{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center}
+  .morph-section-2{min-height:300vh;position:relative}
+  .morph-canvas-2{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .morph-canvas-2 svg{width:min(90vw,900px);height:min(60vw,500px)}
+  .divider{width:60px;height:1px;background:var(--border);margin:80px auto}
+  .explain{padding:120px 24px;text-align:center;max-width:680px;margin:0 auto;border-top:1px solid #1a1a1d}
+  .explain .tag{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(200,169,126,.2);padding:4px 12px;border-radius:100px;margin-bottom:20px}
+  .explain h2{font-size:clamp(24px,4vw,40px);font-weight:600;letter-spacing:-.02em;margin-bottom:16px}
+  .explain p{font-size:17px;color:var(--muted);line-height:1.6}
+  footer{border-top:1px solid #1a1a1d;padding:24px;text-align:center;font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero-label">Module 32 — Morphing Shapes</div>
+  <h1>SVG blobs that <span>morph on scroll</span></h1>
+  <p>Abstract shapes transform between organic forms as you scroll. Vibrant gradients on a dark canvas. Two variants below.</p>
+</section>
+
+<section class="morph-section" id="morphZone1">
+  <div class="morph-canvas">
+    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#6C63FF"/>
+          <stop offset="50%" stop-color="#FF6584"/>
+          <stop offset="100%" stop-color="#FFC75F"/>
+        </linearGradient>
+        <linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#00C9A7"/>
+          <stop offset="50%" stop-color="#845EC2"/>
+          <stop offset="100%" stop-color="#FF6F91"/>
+        </linearGradient>
+        <filter id="glow"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <path id="blob1" fill="url(#g1)" opacity="0.85" filter="url(#glow)"/>
+      <path id="blob2" fill="url(#g2)" opacity="0.5" filter="url(#glow)"/>
+    </svg>
+    <div class="morph-label">Scroll to morph</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="morph-section-2" id="morphZone2">
+  <div class="morph-canvas-2">
+    <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#FF6B6B"/>
+          <stop offset="100%" stop-color="#556270"/>
+        </linearGradient>
+        <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#36D1DC"/>
+          <stop offset="100%" stop-color="#5B86E5"/>
+        </linearGradient>
+        <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#F7971E"/>
+          <stop offset="100%" stop-color="#FFD200"/>
+        </linearGradient>
+      </defs>
+      <path id="wave1" fill="url(#g3)" opacity="0.6"/>
+      <path id="wave2" fill="url(#g4)" opacity="0.5"/>
+      <path id="wave3" fill="url(#g5)" opacity="0.4"/>
+    </svg>
+    <div class="morph-label">Layered wave morph</div>
+  </div>
+</section>
+
+<section class="explain">
+  <div class="tag">Why it works</div>
+  <h2>Organic motion captures attention</h2>
+  <p>Morphing shapes feel alive. They guide the eye without demanding a click. Hero backgrounds, section transitions, and loading states all benefit from this ambient motion. The scroll-driven approach keeps the user in control of the animation speed.</p>
+</section>
+<footer>Cinematic Module — Morphing Shapes</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Blob path generator
+  function blobPath(cx,cy,r,points,variance,seed){
+    var path='';
+    for(var i=0;i<points;i++){
+      var angle=(Math.PI*2/points)*i;
+      var rand=Math.sin(seed*13.37+i*7.77)*variance;
+      var x=cx+Math.cos(angle)*(r+rand);
+      var y=cy+Math.sin(angle)*(r+rand);
+      if(i===0)path='M '+x+' '+y;
+      else{
+        var cpAngle=angle-Math.PI/points;
+        var cpR=r*1.15+Math.sin(seed*5.5+i*3.3)*variance*0.8;
+        var cpx=cx+Math.cos(cpAngle)*cpR;
+        var cpy=cy+Math.sin(cpAngle)*cpR;
+        path+=' Q '+cpx+' '+cpy+' '+x+' '+y;
+      }
+    }
+    return path+' Z';
+  }
+
+  // Variant 1: Two blobs morphing
+  var blob1=document.getElementById('blob1');
+  var blob2=document.getElementById('blob2');
+  var shapes1=[
+    {seed:1,r:160,v:60,cx:250,cy:250},
+    {seed:3,r:140,v:80,cx:250,cy:250},
+    {seed:5,r:180,v:50,cx:250,cy:250},
+    {seed:7,r:150,v:70,cx:250,cy:250}
+  ];
+  var shapes2=[
+    {seed:2,r:130,v:50,cx:250,cy:250},
+    {seed:4,r:170,v:40,cx:250,cy:250},
+    {seed:6,r:120,v:60,cx:250,cy:250},
+    {seed:8,r:160,v:55,cx:250,cy:250}
+  ];
+
+  // Set initial
+  blob1.setAttribute('d',blobPath(250,250,160,8,60,1));
+  blob2.setAttribute('d',blobPath(250,250,130,8,50,2));
+
+  // Interpolate between blob states
+  function lerpBlob(el,fromS,toS,progress,pts){
+    var s={
+      seed:fromS.seed+(toS.seed-fromS.seed)*progress,
+      r:fromS.r+(toS.r-fromS.r)*progress,
+      v:fromS.v+(toS.v-fromS.v)*progress,
+      cx:fromS.cx+(toS.cx-fromS.cx)*progress,
+      cy:fromS.cy+(toS.cy-fromS.cy)*progress
+    };
+    el.setAttribute('d',blobPath(s.cx,s.cy,s.r,pts||8,s.v,s.seed));
+  }
+
+  ScrollTrigger.create({
+    trigger:'#morphZone1',
+    start:'top top',
+    end:'bottom bottom',
+    scrub:0.5,
+    onUpdate:function(self){
+      var p=self.progress;
+      var total=shapes1.length-1;
+      var segment=p*total;
+      var idx=Math.min(Math.floor(segment),total-1);
+      var localP=segment-idx;
+      lerpBlob(blob1,shapes1[idx],shapes1[idx+1],localP,8);
+      lerpBlob(blob2,shapes2[idx],shapes2[idx+1],localP,8);
+      // Rotate blob2
+      blob2.style.transform='rotate('+(p*120)+'deg)';
+      blob2.style.transformOrigin='250px 250px';
+    }
+  });
+
+  // Variant 2: Layered waves
+  function wavePath(w,h,yBase,amp,freq,phase){
+    var d='M 0 '+h;
+    d+=' L 0 '+(yBase+Math.sin(phase)*amp);
+    for(var x=10;x<=w;x+=10){
+      var y=yBase+Math.sin(x*freq+phase)*amp+Math.sin(x*freq*0.5+phase*1.3)*amp*0.5;
+      d+=' L '+x+' '+y;
+    }
+    d+=' L '+w+' '+h+' Z';
+    return d;
+  }
+
+  var wave1=document.getElementById('wave1');
+  var wave2=document.getElementById('wave2');
+  var wave3=document.getElementById('wave3');
+
+  // Set initial
+  wave1.setAttribute('d',wavePath(900,400,200,40,0.02,0));
+  wave2.setAttribute('d',wavePath(900,400,240,35,0.025,1));
+  wave3.setAttribute('d',wavePath(900,400,280,30,0.03,2));
+
+  ScrollTrigger.create({
+    trigger:'#morphZone2',
+    start:'top top',
+    end:'bottom bottom',
+    scrub:0.3,
+    onUpdate:function(self){
+      var p=self.progress*Math.PI*4;
+      wave1.setAttribute('d',wavePath(900,400,180,50+Math.sin(p)*20,0.015+self.progress*0.01,p));
+      wave2.setAttribute('d',wavePath(900,400,220,40+Math.cos(p*0.7)*15,0.02+self.progress*0.008,p*1.3));
+      wave3.setAttribute('d',wavePath(900,400,260,35+Math.sin(p*0.5)*25,0.025+self.progress*0.005,p*0.8));
+    }
+  });
+})();
+</script>
+</body>
+</html>

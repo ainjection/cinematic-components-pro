@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scroll Progress — Cinematic Module</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--text:#eae7e2;--muted:#5a5a5e;--accent:#c8a97e;--border:#1e1e22}
+  *{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+  /* Progress bar */
+  .progress-bar{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,#6C63FF,#FF6584,#FFC75F);z-index:1000;transition:none}
+  .progress-bar::after{content:'';position:absolute;right:0;top:0;width:80px;height:100%;background:inherit;filter:blur(8px);opacity:.6}
+
+  /* Section dots */
+  .section-nav{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:1000;display:flex;flex-direction:column;gap:16px;align-items:center}
+  .section-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--muted);background:transparent;cursor:pointer;transition:all .3s ease;position:relative}
+  .section-dot.active{border-color:var(--accent);background:var(--accent);transform:scale(1.3)}
+  .section-dot-label{position:absolute;right:22px;top:50%;transform:translateY(-50%);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap;opacity:0;transition:opacity .3s ease;pointer-events:none}
+  .section-dot:hover .section-dot-label,.section-dot.active .section-dot-label{opacity:1;color:var(--accent)}
+
+  /* Content sections */
+  .section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px;text-align:center;position:relative}
+  .section::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(200,169,126,.03),transparent 70%)}
+  .section-number{font-size:120px;font-weight:700;letter-spacing:-.05em;opacity:.06;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+  .section-tag{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;opacity:0;transform:translateY(20px)}
+  .section h2{font-size:clamp(28px,5vw,52px);font-weight:600;letter-spacing:-.025em;max-width:600px;line-height:1.15;opacity:0;transform:translateY(20px)}
+  .section h2 span{color:var(--accent)}
+  .section-desc{font-size:17px;color:var(--muted);line-height:1.6;max-width:480px;margin-top:16px;opacity:0;transform:translateY(20px)}
+
+  /* Hero specific */
+  .section.hero .section-tag,.section.hero h2,.section.hero .section-desc{opacity:1;transform:none}
+  .hero-label{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+
+  /* Scroll indicator */
+  .scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .scroll-hint span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .scroll-arrow{width:20px;height:20px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);animation:bounce 2s infinite}
+  @keyframes bounce{0%,100%{transform:translateY(0) rotate(45deg)}50%{transform:translateY(6px) rotate(45deg)}}
+
+  /* Percentage display */
+  .progress-pct{position:fixed;top:12px;right:24px;font-size:12px;letter-spacing:.1em;color:var(--muted);z-index:1001;font-variant-numeric:tabular-nums}
+
+  .explain{padding:120px 24px;text-align:center;max-width:680px;margin:0 auto;border-top:1px solid #1a1a1d}
+  .explain .tag{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(200,169,126,.2);padding:4px 12px;border-radius:100px;margin-bottom:20px}
+  .explain h2{font-size:clamp(24px,4vw,40px);font-weight:600;letter-spacing:-.02em;margin-bottom:16px;opacity:1;transform:none}
+  .explain p{font-size:17px;color:var(--muted);line-height:1.6;opacity:1;transform:none}
+  footer{border-top:1px solid #1a1a1d;padding:24px;text-align:center;font-size:12px;color:var(--muted)}
+
+  @media(max-width:600px){.section-nav{display:none}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<div class="progress-pct" id="progressPct">0%</div>
+
+<nav class="section-nav" id="sectionNav">
+  <div class="section-dot active" data-target="sec0"><span class="section-dot-label">Intro</span></div>
+  <div class="section-dot" data-target="sec1"><span class="section-dot-label">Vision</span></div>
+  <div class="section-dot" data-target="sec2"><span class="section-dot-label">Speed</span></div>
+  <div class="section-dot" data-target="sec3"><span class="section-dot-label">Scale</span></div>
+  <div class="section-dot" data-target="sec4"><span class="section-dot-label">Trust</span></div>
+  <div class="section-dot" data-target="sec5"><span class="section-dot-label">Future</span></div>
+</nav>
+
+<section class="section hero" id="sec0">
+  <div class="hero-label">Module 34 — Scroll Progress</div>
+  <div class="section-tag">Welcome</div>
+  <h2>Track your scroll with <span>precision</span></h2>
+  <p class="section-desc">A progress bar fills the top of the page. Section dots highlight as you pass each landmark. Smooth, scrubbed, satisfying.</p>
+  <div class="scroll-hint"><span>Scroll down</span><div class="scroll-arrow"></div></div>
+  <div class="section-number">01</div>
+</section>
+
+<section class="section" id="sec1">
+  <div class="section-tag">Chapter One</div>
+  <h2>Start with a <span>clear vision</span></h2>
+  <p class="section-desc">Every great product begins with a problem worth solving. Define it sharply, then build with intention.</p>
+  <div class="section-number">02</div>
+</section>
+
+<section class="section" id="sec2">
+  <div class="section-tag">Chapter Two</div>
+  <h2>Obsess over <span>speed</span></h2>
+  <p class="section-desc">Performance is a feature. Every millisecond shaved off load time is trust earned and revenue gained.</p>
+  <div class="section-number">03</div>
+</section>
+
+<section class="section" id="sec3">
+  <div class="section-tag">Chapter Three</div>
+  <h2>Design for <span>scale</span></h2>
+  <p class="section-desc">What works for 100 users should work for 100,000. Build the foundation before you need it.</p>
+  <div class="section-number">04</div>
+</section>
+
+<section class="section" id="sec4">
+  <div class="section-tag">Chapter Four</div>
+  <h2>Earn <span>trust</span> daily</h2>
+  <p class="section-desc">Uptime, transparency, and honest communication. Trust compounds faster than any growth hack.</p>
+  <div class="section-number">05</div>
+</section>
+
+<section class="section" id="sec5">
+  <div class="section-tag">Chapter Five</div>
+  <h2>Build the <span>future</span></h2>
+  <p class="section-desc">Ship today, iterate tomorrow. The best version of your product is always the next one.</p>
+  <div class="section-number">06</div>
+</section>
+
+<section class="explain">
+  <div class="tag">Why it works</div>
+  <h2>Orientation reduces anxiety</h2>
+  <p>Long-form pages can feel endless. A progress bar and section markers tell visitors exactly where they are and how much remains. Case studies, documentation, and storytelling pages all benefit from this wayfinding pattern.</p>
+</section>
+<footer>Cinematic Module — Scroll Progress</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+
+  var bar=document.getElementById('progressBar');
+  var pct=document.getElementById('progressPct');
+  var dots=document.querySelectorAll('.section-dot');
+  var sections=document.querySelectorAll('.section');
+
+  // Global progress bar
+  ScrollTrigger.create({
+    trigger:'body',
+    start:'top top',
+    end:'bottom bottom',
+    scrub:0,
+    onUpdate:function(self){
+      var p=Math.round(self.progress*100);
+      bar.style.width=p+'%';
+      pct.textContent=p+'%';
+    }
+  });
+
+  // Section animations + dot activation
+  sections.forEach(function(sec,i){
+    // Animate content in
+    var tag=sec.querySelector('.section-tag');
+    var h2=sec.querySelector('h2');
+    var desc=sec.querySelector('.section-desc');
+    if(i>0){
+      var tl=gsap.timeline({
+        scrollTrigger:{
+          trigger:sec,
+          start:'top 70%',
+          end:'top 30%',
+          scrub:1
+        }
+      });
+      if(tag) tl.to(tag,{opacity:1,y:0,duration:0.3},0);
+      if(h2) tl.to(h2,{opacity:1,y:0,duration:0.4},0.1);
+      if(desc) tl.to(desc,{opacity:1,y:0,duration:0.4},0.2);
+    }
+
+    // Dot activation
+    ScrollTrigger.create({
+      trigger:sec,
+      start:'top center',
+      end:'bottom center',
+      onEnter:function(){activateDot(i);},
+      onEnterBack:function(){activateDot(i);}
+    });
+  });
+
+  function activateDot(idx){
+    dots.forEach(function(d,i){
+      d.classList.toggle('active',i===idx);
+    });
+  }
+
+  // Click dots to scroll
+  dots.forEach(function(dot){
+    dot.addEventListener('click',function(){
+      var target=document.getElementById(dot.dataset.target);
+      if(target) gsap.to(window,{scrollTo:target,duration:1,ease:'power2.inOut'});
+    });
+  });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollToPlugin.min.js"></script>
+</body>
+</html>

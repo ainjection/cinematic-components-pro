@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Gradient Reveal — Cinematic Module</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--text:#eae7e2;--muted:#5a5a5e;--accent:#c8a97e;--border:#1e1e22;--dim:#2a2a2e}
+  *{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .hero{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
+  .hero-label{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+  .hero h1{font-size:clamp(32px,6vw,64px);font-weight:600;line-height:1.15;max-width:700px;letter-spacing:-.025em}
+  .hero h1 span{color:var(--accent)}
+  .hero p{font-size:17px;color:var(--muted);line-height:1.6;max-width:520px;margin-top:16px}
+
+  .reveal-section{min-height:200vh;position:relative;padding:0 24px}
+  .reveal-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center}
+  .reveal-text{font-size:clamp(28px,5.5vw,60px);font-weight:700;line-height:1.3;max-width:900px;text-align:center;letter-spacing:-.03em}
+  .reveal-text .word{display:inline-block;margin:0 .15em;color:var(--dim);transition:none}
+  .reveal-text .word.revealed{background:linear-gradient(135deg,#6C63FF,#FF6584,#FFC75F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .reveal-section-label{position:absolute;top:40px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);z-index:2}
+
+  /* Variant 2 - different gradient */
+  .reveal-section-2 .reveal-text .word.revealed{background:linear-gradient(135deg,#00C9A7,#36D1DC,#845EC2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+  /* Variant 3 - per-character */
+  .reveal-section-3{min-height:250vh}
+  .reveal-section-3 .reveal-text{font-size:clamp(36px,7vw,80px);font-weight:800}
+  .reveal-section-3 .reveal-text .char{display:inline-block;color:var(--dim);transition:none}
+  .reveal-section-3 .reveal-text .char.revealed{background:linear-gradient(135deg,#FF6B6B,#F7971E,#FFD200);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .reveal-section-3 .reveal-text .word{color:transparent;-webkit-text-fill-color:transparent}
+  .reveal-section-3 .reveal-text .word .char:not(.revealed){color:var(--dim);-webkit-text-fill-color:var(--dim)}
+
+  .spacer{height:20vh}
+  .divider{width:60px;height:1px;background:var(--border);margin:80px auto}
+  .explain{padding:120px 24px;text-align:center;max-width:680px;margin:0 auto;border-top:1px solid #1a1a1d}
+  .explain .tag{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(200,169,126,.2);padding:4px 12px;border-radius:100px;margin-bottom:20px}
+  .explain h2{font-size:clamp(24px,4vw,40px);font-weight:600;letter-spacing:-.02em;margin-bottom:16px}
+  .explain p{font-size:17px;color:var(--muted);line-height:1.6}
+  footer{border-top:1px solid #1a1a1d;padding:24px;text-align:center;font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero-label">Module 35 — Text Gradient Reveal</div>
+  <h1>Words that <span>fill with color</span> on scroll</h1>
+  <p>Large text starts dim. Each word lights up with a vibrant gradient as your scroll reaches it. Three variants: word-by-word, sentence, and per-character.</p>
+</section>
+
+<section class="reveal-section" id="reveal1">
+  <div class="reveal-section-label">Variant 1 — Word by word</div>
+  <div class="reveal-sticky">
+    <div class="reveal-text" id="text1" data-text="We believe the best products are built by small teams who move fast, care deeply, and never settle for good enough."></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="reveal-section reveal-section-2" id="reveal2">
+  <div class="reveal-section-label">Variant 2 — Different gradient, longer text</div>
+  <div class="reveal-sticky">
+    <div class="reveal-text" id="text2" data-text="Design is not just how it looks. Design is how it works. Every pixel, every interaction, every moment should feel intentional and alive."></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="reveal-section reveal-section-3" id="reveal3">
+  <div class="reveal-section-label">Variant 3 — Character by character</div>
+  <div class="reveal-sticky">
+    <div class="reveal-text" id="text3" data-text="Ship it. Learn. Iterate. Repeat." data-mode="chars"></div>
+  </div>
+</section>
+
+<div class="spacer"></div>
+
+<section class="explain">
+  <div class="tag">Why it works</div>
+  <h2>Controlled reading pace</h2>
+  <p>Revealing text word-by-word forces visitors to read at the pace you set. The gradient adds visual reward — each word feels like an achievement. Manifesto pages, brand statements, and product intros all hit harder with this scroll-driven reveal.</p>
+</section>
+<footer>Cinematic Module — Text Gradient Reveal</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Split text into word spans
+  function splitWords(container){
+    var text=container.dataset.text;
+    var words=text.split(' ');
+    var mode=container.dataset.mode;
+
+    if(mode==='chars'){
+      words.forEach(function(word,wi){
+        var wordSpan=document.createElement('span');
+        wordSpan.className='word';
+        for(var c=0;c<word.length;c++){
+          var charSpan=document.createElement('span');
+          charSpan.className='char';
+          charSpan.textContent=word[c];
+          wordSpan.appendChild(charSpan);
+        }
+        container.appendChild(wordSpan);
+        if(wi<words.length-1){
+          container.appendChild(document.createTextNode(' '));
+        }
+      });
+      return container.querySelectorAll('.char');
+    } else {
+      words.forEach(function(word,i){
+        var span=document.createElement('span');
+        span.className='word';
+        span.textContent=word;
+        container.appendChild(span);
+        if(i<words.length-1){
+          container.appendChild(document.createTextNode(' '));
+        }
+      });
+      return container.querySelectorAll('.word');
+    }
+  }
+
+  // Initialize each reveal section
+  ['text1','text2','text3'].forEach(function(id){
+    var container=document.getElementById(id);
+    var section=container.closest('.reveal-section');
+    var elements=splitWords(container);
+    var total=elements.length;
+
+    ScrollTrigger.create({
+      trigger:section,
+      start:'top top',
+      end:'bottom bottom',
+      scrub:0.3,
+      onUpdate:function(self){
+        var progress=self.progress;
+        var revealCount=Math.floor(progress*total);
+        elements.forEach(function(el,i){
+          if(i<revealCount){
+            el.classList.add('revealed');
+          } else {
+            el.classList.remove('revealed');
+          }
+        });
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

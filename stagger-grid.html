@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stagger Grid — Cinematic Module</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--text:#eae7e2;--muted:#5a5a5e;--accent:#c8a97e;--border:#1e1e22}
+  *{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .hero{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px}
+  .hero-label{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+  .hero h1{font-size:clamp(32px,6vw,64px);font-weight:600;line-height:1.15;max-width:700px;letter-spacing:-.025em}
+  .hero h1 span{color:var(--accent)}
+  .hero p{font-size:17px;color:var(--muted);line-height:1.6;max-width:520px;margin-top:16px}
+  .grid-section{padding:100px 24px;max-width:1100px;margin:0 auto}
+  .grid-section-label{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:48px;text-align:center}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px}
+  .card{background:#111114;border:1px solid var(--border);border-radius:16px;padding:32px 24px;opacity:0;transform:translateY(40px) scale(0.95)}
+  .card-icon{width:48px;height:48px;border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:22px}
+  .card h3{font-size:18px;font-weight:600;margin-bottom:8px;letter-spacing:-.01em}
+  .card p{font-size:14px;color:var(--muted);line-height:1.55}
+  .card:nth-child(1) .card-icon{background:rgba(108,99,255,.15);color:#6C63FF}
+  .card:nth-child(2) .card-icon{background:rgba(255,101,132,.15);color:#FF6584}
+  .card:nth-child(3) .card-icon{background:rgba(0,201,167,.15);color:#00C9A7}
+  .card:nth-child(4) .card-icon{background:rgba(255,199,95,.15);color:#FFC75F}
+  .card:nth-child(5) .card-icon{background:rgba(132,94,194,.15);color:#845EC2}
+  .card:nth-child(6) .card-icon{background:rgba(255,111,145,.15);color:#FF6F91}
+  .card:nth-child(7) .card-icon{background:rgba(54,209,220,.15);color:#36D1DC}
+  .card:nth-child(8) .card-icon{background:rgba(247,151,30,.15);color:#F7971E}
+  .card:nth-child(9) .card-icon{background:rgba(108,99,255,.15);color:#6C63FF}
+  .card:nth-child(10) .card-icon{background:rgba(255,101,132,.15);color:#FF6584}
+  .card:nth-child(11) .card-icon{background:rgba(0,201,167,.15);color:#00C9A7}
+  .card:nth-child(12) .card-icon{background:rgba(255,199,95,.15);color:#FFC75F}
+  .spacer{height:30vh}
+  .divider{width:60px;height:1px;background:var(--border);margin:80px auto}
+  .mode-label{text-align:center;font-size:13px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+  .explain{padding:120px 24px;text-align:center;max-width:680px;margin:0 auto;border-top:1px solid #1a1a1d}
+  .explain .tag{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(200,169,126,.2);padding:4px 12px;border-radius:100px;margin-bottom:20px}
+  .explain h2{font-size:clamp(24px,4vw,40px);font-weight:600;letter-spacing:-.02em;margin-bottom:16px}
+  .explain p{font-size:17px;color:var(--muted);line-height:1.6}
+  footer{border-top:1px solid #1a1a1d;padding:24px;text-align:center;font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="hero-label">Module 33 — Stagger Grid</div>
+  <h1>Cards that <span>cascade into view</span></h1>
+  <p>Grid items stagger-animate on scroll with different patterns: sequential wave, random pop, and diagonal sweep. Three demos below.</p>
+</section>
+
+<div class="spacer"></div>
+
+<section class="grid-section" id="grid1">
+  <div class="grid-section-label">Variant 1 — Sequential wave stagger</div>
+  <div class="mode-label">Left to right, row by row</div>
+  <div class="card-grid" data-stagger="wave">
+    <div class="card"><div class="card-icon">&#9889;</div><h3>Lightning Fast</h3><p>Sub-50ms response times with edge caching and optimized queries.</p></div>
+    <div class="card"><div class="card-icon">&#128274;</div><h3>Secure by Default</h3><p>End-to-end encryption, SOC 2 compliant, zero-trust architecture.</p></div>
+    <div class="card"><div class="card-icon">&#128200;</div><h3>Auto Scaling</h3><p>Handles traffic spikes without manual intervention or downtime.</p></div>
+    <div class="card"><div class="card-icon">&#127793;</div><h3>Carbon Neutral</h3><p>Powered by 100% renewable energy across all data centers.</p></div>
+    <div class="card"><div class="card-icon">&#128640;</div><h3>One-Click Deploy</h3><p>Push to main and your changes are live in under 30 seconds.</p></div>
+    <div class="card"><div class="card-icon">&#129302;</div><h3>AI-Powered</h3><p>Built-in ML models for anomaly detection and smart routing.</p></div>
+    <div class="card"><div class="card-icon">&#127759;</div><h3>Global CDN</h3><p>200+ points of presence for low-latency delivery worldwide.</p></div>
+    <div class="card"><div class="card-icon">&#128736;</div><h3>API First</h3><p>Everything accessible via REST and GraphQL with full docs.</p></div>
+    <div class="card"><div class="card-icon">&#128101;</div><h3>Team Friendly</h3><p>Role-based access, audit logs, and real-time collaboration.</p></div>
+    <div class="card"><div class="card-icon">&#128161;</div><h3>Smart Insights</h3><p>Dashboards and alerts that surface what matters most.</p></div>
+    <div class="card"><div class="card-icon">&#127912;</div><h3>Themeable</h3><p>White-label ready with full CSS variable customization.</p></div>
+    <div class="card"><div class="card-icon">&#128171;</div><h3>99.99% SLA</h3><p>Battle-tested infrastructure with multi-region failover.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="grid-section" id="grid2">
+  <div class="grid-section-label">Variant 2 — Random pop stagger</div>
+  <div class="mode-label">Cards appear in random order</div>
+  <div class="card-grid" data-stagger="random">
+    <div class="card"><div class="card-icon">&#9889;</div><h3>Real-time Sync</h3><p>Changes propagate across clients within milliseconds.</p></div>
+    <div class="card"><div class="card-icon">&#128274;</div><h3>Data Privacy</h3><p>GDPR and CCPA compliant with granular consent controls.</p></div>
+    <div class="card"><div class="card-icon">&#128200;</div><h3>Usage Analytics</h3><p>Understand user behavior with built-in event tracking.</p></div>
+    <div class="card"><div class="card-icon">&#127793;</div><h3>Lightweight SDK</h3><p>Under 5KB gzipped. Tree-shakeable. Zero dependencies.</p></div>
+    <div class="card"><div class="card-icon">&#128640;</div><h3>Preview Envs</h3><p>Every PR gets its own preview URL for easy review.</p></div>
+    <div class="card"><div class="card-icon">&#129302;</div><h3>Smart Cache</h3><p>Automatic cache invalidation with stale-while-revalidate.</p></div>
+    <div class="card"><div class="card-icon">&#127759;</div><h3>Multi-tenant</h3><p>Isolated data per tenant with shared infrastructure.</p></div>
+    <div class="card"><div class="card-icon">&#128736;</div><h3>Webhooks</h3><p>Push events to any endpoint with retry and logging.</p></div>
+    <div class="card"><div class="card-icon">&#128101;</div><h3>SSO Ready</h3><p>SAML 2.0 and OIDC for enterprise identity providers.</p></div>
+    <div class="card"><div class="card-icon">&#128161;</div><h3>Feature Flags</h3><p>Roll out changes gradually with audience targeting.</p></div>
+    <div class="card"><div class="card-icon">&#127912;</div><h3>Dark Mode</h3><p>System-aware theming with smooth transitions.</p></div>
+    <div class="card"><div class="card-icon">&#128171;</div><h3>Edge Functions</h3><p>Run server logic at the edge for minimal latency.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="grid-section" id="grid3">
+  <div class="grid-section-label">Variant 3 — Diagonal sweep stagger</div>
+  <div class="mode-label">Top-left to bottom-right diagonal</div>
+  <div class="card-grid" data-stagger="diagonal">
+    <div class="card"><div class="card-icon">&#9889;</div><h3>Instant Search</h3><p>Full-text search with typo tolerance and faceted filters.</p></div>
+    <div class="card"><div class="card-icon">&#128274;</div><h3>Audit Trail</h3><p>Every action logged with who, what, when, and where.</p></div>
+    <div class="card"><div class="card-icon">&#128200;</div><h3>A/B Testing</h3><p>Built-in experimentation with statistical significance.</p></div>
+    <div class="card"><div class="card-icon">&#127793;</div><h3>Migrations</h3><p>Schema versioning with zero-downtime rollbacks.</p></div>
+    <div class="card"><div class="card-icon">&#128640;</div><h3>CLI Tools</h3><p>Full-featured command-line interface for power users.</p></div>
+    <div class="card"><div class="card-icon">&#129302;</div><h3>Auto Backup</h3><p>Point-in-time recovery with 30-day retention window.</p></div>
+    <div class="card"><div class="card-icon">&#127759;</div><h3>Rate Limiting</h3><p>Configurable limits per endpoint, user, or API key.</p></div>
+    <div class="card"><div class="card-icon">&#128736;</div><h3>Batch API</h3><p>Process thousands of records in a single request.</p></div>
+    <div class="card"><div class="card-icon">&#128101;</div><h3>Notifications</h3><p>Email, SMS, push, and in-app across one unified API.</p></div>
+    <div class="card"><div class="card-icon">&#128161;</div><h3>Error Budget</h3><p>SLO tracking with automatic alerting when budget drops.</p></div>
+    <div class="card"><div class="card-icon">&#127912;</div><h3>Embeddable</h3><p>Drop-in iframe or web component for any site.</p></div>
+    <div class="card"><div class="card-icon">&#128171;</div><h3>Open Source</h3><p>MIT licensed with an active contributor community.</p></div>
+  </div>
+</section>
+
+<section class="explain">
+  <div class="tag">Why it works</div>
+  <h2>Stagger creates visual rhythm</h2>
+  <p>When items appear one after another, the eye naturally follows the sequence. This guides attention across the grid without overwhelming the viewer. Feature pages, portfolios, and pricing grids all benefit from staggered reveals. The slight delay between each card creates anticipation.</p>
+</section>
+<footer>Cinematic Module — Stagger Grid</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('.card-grid').forEach(function(grid){
+    var cards=grid.querySelectorAll('.card');
+    var mode=grid.dataset.stagger;
+    var cols=Math.round(grid.offsetWidth/264)||3;
+
+    // Build stagger order
+    var order=[];
+    for(var i=0;i<cards.length;i++) order.push(i);
+
+    if(mode==='random'){
+      for(var j=order.length-1;j>0;j--){
+        var k=Math.floor(Math.random()*(j+1));
+        var tmp=order[j];order[j]=order[k];order[k]=tmp;
+      }
+    }
+
+    // Sort cards array by stagger pattern
+    var sorted=[];
+    if(mode==='diagonal'){
+      // Diagonal: sort by row+col sum
+      var items=[];
+      for(var m=0;m<cards.length;m++){
+        var row=Math.floor(m/cols);
+        var col=m%cols;
+        items.push({el:cards[m],diag:row+col,idx:m});
+      }
+      items.sort(function(a,b){return a.diag-b.diag||a.idx-b.idx;});
+      sorted=items.map(function(it){return it.el;});
+    } else if(mode==='random'){
+      sorted=order.map(function(idx){return cards[idx];});
+    } else {
+      sorted=Array.from(cards);
+    }
+
+    ScrollTrigger.create({
+      trigger:grid,
+      start:'top 85%',
+      once:true,
+      onEnter:function(){
+        gsap.to(sorted,{
+          opacity:1,
+          y:0,
+          scale:1,
+          duration:0.6,
+          ease:'power3.out',
+          stagger:0.08
+        });
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

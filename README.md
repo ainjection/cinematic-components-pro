@@ -1,21 +1,43 @@
-# Cinematic Site Modules
+# Cinematic Components Pro
 
-30 cinematic website modules. Each one is a single HTML file. No frameworks. No build step. No npm. Just open it.
+Enhanced fork by AI Injection. Original by RoboNuggets.
+
+35 cinematic website modules. Each one is a single HTML file. No frameworks. No build step. No npm. Just open it.
+
+## Improvements over original
+
+This Pro fork adds 5 new scroll-driven and interactive components on top of the original 30:
+
+- **Smooth Counter** — Animated number counters that count up when scrolled into view, with comma formatting and decimal support
+- **Morphing Shapes** — Abstract SVG blobs and waves that morph between organic forms on scroll with vibrant gradients
+- **Stagger Grid** — Grid cards that cascade into view with three stagger patterns: sequential wave, random pop, and diagonal sweep
+- **Scroll Progress** — Top-of-page progress bar with section dot navigation that highlights as you scroll through each chapter
+- **Text Gradient Reveal** — Words fill with vibrant gradient color one by one as the scroll reaches them, with per-character variant
 
 ## Preview
 
-Open `index.html` to browse all 30 modules with animated mini-demos, or open any individual module file directly in a browser.
+Open `index.html` to browse all 35 modules with animated mini-demos, or open any individual module file directly in a browser.
 
 ## Get Started
 
 ```bash
-git clone https://github.com/robonuggets/cinematic-site-components.git
-cd cinematic-site-components
+git clone https://github.com/robertmilven/cinematic-components-pro.git
+cd cinematic-components-pro
 ```
 
 Then open `index.html` in your browser, or open any module file directly.
 
-## The 30 Modules
+## New in Pro (5)
+
+| # | Module | File | What It Does |
+|---|---|---|---|
+| 31 | Smooth Counter | `smooth-counter.html` | Numbers count up on scroll with smooth easing and formatting |
+| 32 | Morphing Shapes | `morphing-shapes.html` | SVG blobs morph between organic forms on scroll |
+| 33 | Stagger Grid | `stagger-grid.html` | Grid cards cascade in with wave, random, or diagonal stagger |
+| 34 | Scroll Progress | `scroll-progress.html` | Progress bar + section dots track scroll position |
+| 35 | Text Gradient Reveal | `text-gradient-reveal.html` | Words fill with gradient color as scroll reaches them |
+
+## The Original 30 Modules
 
 ### Scroll-Driven (9)
 | # | Module | What It Does |
@@ -76,4 +98,6 @@ MIT — see [LICENSE](LICENSE) for details.
 
 ## Attribution
 
-Created by Jay from RoboLabs. Learn more at [RoboNuggets](https://robonuggets.com)
+Original created by Jay from RoboLabs. Learn more at [RoboNuggets](https://robonuggets.com)
+
+Pro enhancements by [AI Injection](https://youtube.com/@AiInjection-i2p)
